@@ -45,18 +45,21 @@
     shape-rendering: crispEdges;
 }
             </style>
+	<script src="quotes.js"></script>
+	<script src="script.js"></script>
     </head>
     <body>
-        <div>
-			<nav>
-			<ul>
-			<a href="index.html"><b>Home</b></a>
-			<a href="https://rajdeepbattula.github.io/portfolio/"><b>About</b></a>
-			<a href="Documentation_bbattula.html"><b>Documentation</b></a>
-			<a href="https://youtu.be/USU4AydZgW4"><b>Video Presentation</b></a>
-			</ul>
-			</nav>
-		</div>
+       <div>
+	    <nav>
+	      <span id="quote-display"></span>&nbsp;&nbsp;&nbsp;
+	      <ul>
+		<a href="index.html"><b>Home</b></a>
+		<a href="https://rajdeepbattula.github.io/portfolio/"><b>About</b></a>
+		<a href="Documentation_bbattula.html"><b>Documentation</b></a>
+		<a href="https://youtu.be/USU4AydZgW4"><b>Video Presentation</b></a>
+	      </ul>
+	    </nav>
+ 	 </div>
 		
             <h1 style= "text-align: center;">Cholera epidemic in London's Soho in 1854 </h1>
         <div class="left">
@@ -412,5 +415,13 @@ var svg = d3.select("#line_area")
         
            
         </script>
+	<script>
+	    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+	      e.preventDefault();
+	      document.querySelector('#contact').scrollIntoView({
+	        behavior: 'smooth'
+	      });
+	    });
+  	</script>
     </body>
 </html>
