@@ -1,78 +1,93 @@
-<html>
-    <head>
-        <title>Home Page</title>
-	    <script src="https://d3js.org/d3.v4.js"></script>
-        
-        <!-- <link rel="stylesheet" type="text/css" href="/css/main.css"> -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link href='https://fonts.googleapis.com/css?family=Diplomata' rel='stylesheet'>
-		<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-    		<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script> 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-   		<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-		<script src="https://d3js.org/d3.v6.js"></script>
-		<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-
-        <style>
-            
-            .left {
-            width: 50%; 
-            padding: 0 0 0 0;
-            float: left}
-            
-            div.right {
-            width: 50%; 
-            padding: 0 0 0 0;
-            float: right}
-            
-            .myCircle:hover {
-                stroke: red;
-            }
-            path { 
-    stroke: olivedrab;
-    stroke-width: 2;
-    fill: none;
-}
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: black;
-    stroke-width: 1;
-    shape-rendering: crispEdges;
-}
-            </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bala Akhil Rajdeep Battula - Cholera Epidemic Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+	<style>
+		.left {
+	            width: 50%; 
+	            padding: 0 0 0 0;
+	            float: left}
+	            
+	            div.right {
+	            width: 50%; 
+	            padding: 0 0 0 0;
+	            float: right}
+	            
+	            .myCircle:hover {
+	                stroke: red;
+	            }
+		            path { 
+		    stroke: olivedrab;
+		    stroke-width: 2;
+		    fill: none;
+		}
+		
+		.axis path,
+		.axis line {
+		    fill: none;
+		    stroke: black;
+		    stroke-width: 1;
+		    shape-rendering: crispEdges;
+		}
+        </style>
 	<script src="quotes.js"></script>
 	<script src="script.js"></script>
     </head>
     <body>
-       <div>
-	    <nav>
-	      <span id="quote-display"></span>&nbsp;&nbsp;&nbsp;
-	      <ul>
-		<a href="index.html"><b>Home</b></a>
-		<a href="https://rajdeepbattula.github.io/portfolio/"><b>About</b></a>
-		<a href="Documentation_bbattula.html"><b>Documentation</b></a>
-		<a href="https://youtu.be/USU4AydZgW4"><b>Video Presentation</b></a>
-	      </ul>
-	    </nav>
- 	 </div>
-		
-            <h1 style= "text-align: center;">Cholera epidemic in London's Soho in 1854 </h1>
-        <div class="left">
-            <svg id="main_area" width="650" height="600"></svg>
-        </div>
-        <div class="right" id="line_div">
-                <div class="dropdown">
-                  <button type="button" class="button" onclick="draw_dots()" id="total_deaths" style="margin-left: 1cm;">Total No of Deaths</button>
-                  <button type="button" class="button" onclick="draw_dots()" id="by_gender" >Deaths by Gender</button>
-                  <button type="button" class="button" onclick="draw_dots()" id="by_age" >Deaths by Age</button>
-                </div>
-            <svg id="line_area" width="600" height="700"></svg>
-        </div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	    <div class="container">
+	        <span id="quote-display"></span>&nbsp;&nbsp;&nbsp;
+	        <a class="navbar-brand" href="#">Home</a>
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarNav">
+	            <ul class="navbar-nav ml-auto">
+	                 <li class="nav-item">
+	                    <a class="nav-link" href="https://rajdeepbattula.github.io/portfolio/">About</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="Documentation_bbattula.html">Documentation</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="https://youtu.be/USU4AydZgW4">Video Presentation</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#contact">Contact</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+	<section class="py-5">
+	    <div class="container">
+	        <h2 class="text-center mb-4">Cholera Epidemic in London's Soho in 1854</h2>
+	        <div class="row">
+	            <div class="col-md-6">
+	                <svg id="main_area" width="650" height="600"></svg>
+	            </div>
+	            <div class="col-md-6">
+	                <div class="dropdown">
+	                    <button type="button" class="button" onclick="draw_dots()" id="total_deaths" style="margin-left: 1cm;">Total No of Deaths</button>
+	                    <button type="button" class="button" onclick="draw_dots()" id="by_gender">Deaths by Gender</button>
+	                    <button type="button" class="button" onclick="draw_dots()" id="by_age">Deaths by Age</button>
+	                </div>
+	                <svg id="line_area" width="600" height="700"></svg>
+	            </div>
+	        </div>
+	    </div>
+	</section>
             
         <script>
             function gen_mul_x(ux){
