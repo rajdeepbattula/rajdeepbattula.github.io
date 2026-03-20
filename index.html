@@ -1,481 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bala Akhil Rajdeep Battula - Cholera Epidemic Visualization</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3.v6.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-	<style>
-		.left {
-	            width: 50%; 
-	            padding: 0 0 0 0;
-	            float: left}
-	            
-	            div.right {
-	            width: 50%; 
-	            padding: 0 0 0 0;
-	            float: right}
-	            
-	            .myCircle:hover {
-	                stroke: red;
-	            }
-		            path { 
-		    stroke: olivedrab;
-		    stroke-width: 2;
-		    fill: none;
-		}
-		
-		.axis path,
-		.axis line {
-		    fill: none;
-		    stroke: black;
-		    stroke-width: 1;
-		    shape-rendering: crispEdges;
-		}
-        </style>
-	<script src="quotes.js"></script>
-	<script src="script.js"></script>
-    </head>
-    <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	    <div class="container">
-	        <span id="quote-display"></span>&nbsp;&nbsp;&nbsp;
-	        <a class="navbar-brand" href="#">Home</a>
-	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-	        <div class="collapse navbar-collapse" id="navbarNav">
-	            <ul class="navbar-nav ml-auto">
-	                 <li class="nav-item">
-	                    <a class="nav-link" href="https://rajdeepbattula.github.io/portfolio/">About</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="Documentation_bbattula.html">Documentation</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="https://youtu.be/USU4AydZgW4">Video Presentation</a>
-	                </li>
-	                <!--<li class="nav-item">
-	                    <a class="nav-link" href="#contact">Contact</a>
-	                </li>-->
-	            </ul>
-	        </div>
-	    </div>
-	</nav>
-	<section class="py-5">
-	    <div class="container">
-	        <h2 class="text-center mb-4">Cholera Epidemic in London's Soho in 1854</h2>
-	        <div class="row">
-	            <div class="col-md-6">
-	                <svg id="main_area" width="650" height="600"></svg>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="dropdown">
-	                    <button type="button" class="button" onclick="draw_dots()" id="total_deaths" style="margin-left: 1cm;">Total No of Deaths</button>
-	                    <button type="button" class="button" onclick="draw_dots()" id="by_gender">Deaths by Gender</button>
-	                    <button type="button" class="button" onclick="draw_dots()" id="by_age">Deaths by Age</button>
-	                </div>
-	                <svg id="line_area" width="600" height="700"></svg>
-	            </div>
-	        </div>
-	    </div>
-	</section>
-            
-        <script>
-            function gen_mul_x(ux){
-                return ux.x*mul_val;
-            };
-            function gen_mul_y(uy){
-                return uy.y*mul_val;
-            };
-            var mul_val = 28;
-            function street_data(s_dt) {
-            var g = d3.select('#main_area');
-            var path = d3.svg.line().x(gen_mul_x).y(gen_mul_y);
-            var map_line;
-            var i=0;
-            while(i<s_dt.length){
-                map_line=s_dt[i];
-                g.append('g').append('path').style('fill', 'none').style('stroke', '#323232').style('stroke-width', '3').attr('d', path(map_line))
-                i++;
-            }
-            }
-            function pump_data(p_dt) {
-            console.log(p_dt)
-            var dots = d3.select('#main_area').append('g').selectAll('circle').data(p_dt);
-            dots.enter().append('circle').style('fill', 'black')
-            .attr('r', '7')
-                .attr('cx', gen_mul_x)
-                .attr('cy', gen_mul_y)
-            .attr('id', function(st) { return 'dots' + 4*st.id; } );
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bala Akhil Rajdeep Battula – Portfolio</title>
 
-        }
-            d3.json("streets.json",street_data);
-            d3.csv("pumps.csv",pump_data);
-        d3.csv("deathdays.csv", function (death_days) {
-		d3.csv("deaths_age_sex.csv", function (gen_age_deaths) {
-            var p=0;
-            var d_in_month;
-            var death_count;
-            var q=0;
-            var q1=0;
-            while(p<death_days.length){
-                d_in_month=death_days[p].date;
-                death_count=death_days[p].deaths;
-                p++;
-                while(q<death_count){
-                gen_age_deaths[q1].date=d_in_month;                
-                q1++;
-                q++;
-            }
-            }
-        var total_deaths = document.querySelector('#total_deaths'),by_gender = document.querySelector('#by_gender'),by_age = document.querySelector('#by_age');
-        const age_id = document.querySelector('#age_id'), gender_id = document.querySelector('#gender_id');
-        //dots
-	    var dots = d3.select('#main_area').append('g');
-	    
-	 
-        var ch_col = function(d) { return d["gender"];};
-        var og_col = function(d) { return d["gender"];};
-        var focus_col = d3.scale.linear().domain([1,length])
-                   .interpolate(d3.interpolateRgb)
-                    .range([d3.rgb('#136bb6'), d3.rgb('#136bb6')]);        
-       
-        var old_col = d3.scale.linear().domain([1,length])
-        .interpolate(d3.interpolateRgb)
-        .range([d3.rgb('#b6d5f0'), d3.rgb('#b6d5f0')]);
+  <!-- Bootstrap -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
 
-       
-        var cG = d3.select("body").append("svg")
-                                    .attr("width", "500")
-                                    .attr("height", "400")
-                                      .attr("transform","translate(100,-200)").append("g")
-                    .attr("transform","translate(-50,50)");
-            function gen_lgd(){
-                                      cG.selectAll(".legend_2").remove();
-                                      cG.selectAll(".legend_1a").remove();
+  <style>
+    :root {
+      --teal: #00897b;
+      --teal-dark: #00695c;
+      --bg-light: #f7f9fb;
+    }
 
-                                      var clrs_gen = ["#136bb6","#9c0e87"],lgd_gen = ["Male","Female","Gender"];
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #ffffff;
+      color: #222;
+    }
 
-                                      cG.append("rect")
-                                                .attr("class","legend_1a")
-                                                .attr("x","359")
-                                                .attr("y","77")
-                                                .attr("height","60")
-                                                .attr("width","190")
-                                                .attr("stroke", "black")
-                                                .attr("stroke-width", 1.5)
-                                                .attr("fill","none");
+    .navbar {
+      border-bottom: 2px solid var(--teal);
+    }
 
-                                      cG.selectAll("circle")
-                                                .data(clrs_gen)
-                                                .enter().append("circle")
-                                                .attr("class","legend_1a")
-                                                .attr("cx","480")
-                                                .attr("cy",function(d,i){return 95+i*20;})
-                                                .attr("r","8")
-                                                .attr("stroke", "black")
-                                                .attr("fill",function(d,i){return d;});
+    .nav-link:hover {
+      color: var(--teal) !important;
+    }
 
-                                      cG.selectAll("text")
-                                                .data(lgd_gen)
-                                                .enter().append("text")
-                                                .attr("class","legend_1a")
-                                                .attr("x","500")
-                                                .attr("y",function(d,i){return 109+i*20})
-                                                .attr("text-anchor", "left")
-                                                .style("font-size", "16px")
-                                                //.style("text-decoration", "underline")
-                                                .text(function(d,i){return d;});
+    .hero {
+      padding: 4rem 0 3rem 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 137, 123, 0.08),
+        rgba(0, 105, 92, 0.12)
+      );
+    }
 
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
 
-                    };
-            function age_lgd(){
+    .hero-subtitle {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--teal-dark);
+    }
 
-                                  cG.selectAll(".legend_1a").remove();
+    .section {
+      padding: 3rem 0;
+    }
 
-                                  var clrs = ['#f2eb44','#6adb5d','#e75231','#f4efe7','#0bbcee','#670c43'],age = ["0-10","11-20","21-40","41-60","61-80",">80","Ages"];
+    .section-light {
+      background-color: var(--bg-light);
+    }
 
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--teal);
+      padding-left: 0.75rem;
+    }
 
-                                  cG.append("rect")
-                                            .attr("class","legend_2")
-                                            .attr("x","325")
-                                            .attr("y","88")
-                                            .attr("height","125")
-                                            .attr("width","175")
-                                            .attr("stroke", "black")
-                                            .attr("stroke-width", 1.5)
-                                            .attr("fill","none");
+    .project-card {
+      border: 1px solid #e3e6ea;
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+      background-color: #ffffff;
+      transition: 0.15s ease;
+    }
 
-                                  cG.selectAll("circle")
-                                            .data(clrs)
-                                            .enter().append("circle")
-                                            .attr("class","legend_2")
-                                            .attr("cx","435")
-                                            .attr("cy",function(d,i){return 95+i*20;})
-                                            .attr("r","8")
-                                            .attr("stroke", "black")
-                                            .attr("fill",function(d,i){return d;});
+    .project-card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
 
-                                  cG.selectAll("text")
-                                            .data(age)
-                                            .enter().append("text")
-                                            .attr("class","legend_2")
-                                            .attr("x","450")
-                                            .attr("y",function(d,i){return 105+i*20})
-                                            .attr("text-anchor", "left")
-                                            .style("font-size", "16px")
-                                            //.style("text-decoration", "underline")
-                                            .text(function(d,i){return d;});
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
 
+    .project-desc {
+      font-size: 0.9rem;
+    }
 
+    footer {
+      border-top: 1px solid #e3e6ea;
+      padding: 1.5rem 0;
+      background-color: #fafbfc;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-white">
+  <div class="container">
+    <a class="navbar-brand" href="#top"><strong>Bala Akhil Rajdeep Rajdeep Battula</strong></a>
 
-                                  };
-        total_deaths.onclick = function () {
-            
-        ch_col = function(d) { return d.gender;},
-            focus_col = d3.scale.linear().domain([1,length])
-                   .interpolate(d3.interpolateRgb)
-                   .range([d3.rgb("#f42222"), d3.rgb('#f42222')]);
-            
-        og_col = function(d) { return d.gender;},
-        old_col = d3.scale.linear().domain([1,length])
-                   .interpolate(d3.interpolateRgb)
-                   .range([d3.rgb('#ee91a8'), d3.rgb('#ee91a8')]);
-            
-            d3.selectAll('circle')
-            .style("fill", function(d) { return old_col(og_col(d));});
-        
-       };
-           
-         by_gender.onclick = function () {
-            ch_col = function(d) { return d.gender;},
-             focus_col = d3.scale.linear().domain([1,length])
-                   .interpolate(d3.interpolateRgb)
-                   .range([d3.rgb("#9c0e87"), d3.rgb('#112e9a')]);
-             
-            og_col = function(d) { return d.gender;},
-                   old_col = d3.scale.linear().domain([1,length])
-                   .interpolate(d3.interpolateRgb)
-                   .range([d3.rgb('#d8116e'), d3.rgb('#0f4cc3')]);
-           
-             d3.selectAll('circle')
-            .style("fill", function(d) { return old_col(og_col(d));})
-             
-            gen_lgd();
-        
-   
-       };
-           
-       by_age.onclick = function () {
-        ch_col = function(d) { return d.age;},
-                   focus_col = d3.scale.linear().domain([0,1,2,3,4,5])
-                   .interpolate(d3.interpolateHcl)
-                   .range([d3.rgb("#f2eb44"), d3.rgb("#6adb5d"), d3.rgb('#e75231'),d3.rgb("#f4efe7"), d3.rgb('#0bbcee'), d3.rgb("#670c43")]);
-            
-        og_col = function(d) { return d.age;},
-                   old_col = d3.scale.linear().domain([0,1,2,3,4,5])
-                   .interpolate(d3.interpolateHcl)
-                    .range([d3.rgb("#f2eb44"), d3.rgb("#6adb5d"), d3.rgb('#e75231'),d3.rgb("#f4efe7"), d3.rgb('#0bbcee'), d3.rgb("#670c43")]);
-            
-            d3.selectAll('circle')
-            .style("fill", function(d) { return old_col(og_col(d));})
-           
-            age_lgd();         
-       
-           
-       };
-       
-    
-        dots.selectAll('circle')
-        .data(gen_age_deaths)
-                .enter().append('circle')
-                .attr('r', '3')
-        .attr('id', function(d) { return 'dots' + d.id; })
-                .attr('cx', function(d) {return 720 - d.x * 30;})
-                .attr('cy', function(d) { return 640 - d.y * 30; })
-                .attr('class', function (d) {return 'dot' + d.date;})
-                .style("fill", function(d) { return old_col(og_col(d));})
-        
-        // create scattered line plot
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
-    width = 600 - margin.left - margin.right,
-    height = 550 - margin.top - margin.bottom;
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-// Parse the date / time
-var parseDate = d3.time.format("%d-%b").parse;
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ml-projects">ML Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sql-projects">SQL</a></li>
+        <li class="nav-item"><a class="nav-link" href="#foundations">Foundations</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header id="top" class="hero">
+  <div class="container">
+    <h1 class="hero-title">Bala Akhil Rajdeep Battula</h1>
+    <div class="hero-subtitle">
+      Technology & Data Professional | Transitioning into Automotive & Technical Trades
+    </div>
+    <p class="hero-text mt-3">
+      I work at the intersection of <strong>data, engineering, and technical systems</strong>,
+      building solutions that combine analytical thinking with hands-on problem-solving.
+    </p>
+  </div>
+</header>
+<section id="featured" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="row">
 
-// Set the ranges
-var x = d3.time.scale().range([0, width]);
-var y = d3.scale.linear().range([height, 0]);
+      <!-- Cholera -->
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Cholera Epidemic Visualization (D3.js)</div>
+          <p class="project-desc">Interactive recreation of Dr. John Snow’s 1854 cholera map.</p>
+          <a href="https://github.com/rajdeepbattula/cholera-epidemic-visualization">GitHub Repo</a>
+        </div>
+      </div>
 
-// Define the axes
-var xAxis = d3.svg.axis().scale(x)
-    .orient("bottom").ticks(5);
+      <!-- Hotel Booking Viz -->
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Hotel Booking Demand Visualization</div>
+          <p class="project-desc">Tableau-based analysis of global hotel booking behavior.</p>
+          <a href="https://github.com/rajdeepbattula/hotel-booking-demand-visualization">GitHub Repo</a>
+        </div>
+      </div>
 
-var yAxis = d3.svg.axis().scale(y)
-    .orient("left").ticks(5);
+      <!-- Spectrum Shades -->
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Spectrum Shades Quality Analysis</div>
+          <p class="project-desc">Root-cause analysis for pigment quality issues.</p>
+          <a href="https://github.com/rajdeepbattula/spectrum-shades-quality-analysis">GitHub Repo</a>
+        </div>
+      </div>
 
-// Define the line
-var valueline = d3.svg.line()
-    .x(function(d) { return x(parseDate(d["date"])); })
-    .y(function(d) {  return y(Number(d["deaths"])); });
-  
+      <!-- Supplement Experiments -->
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Supplement Experiments Data Engineering</div>
+          <p class="project-desc">Unified dataset for wearable & supplement experiments.</p>
+          <a href="https://github.com/rajdeepbattula/supplement-experiments-data-engineering">GitHub Repo</a>
+        </div>
+      </div>
 
+    </div>
+  </div>
+</section>
+<section id="ml-projects" class="section">
+  <div class="container">
+    <h2 class="section-title">Machine Learning Projects</h2>
+    <div class="row">
 
-// Adds the svg canvas
-var svg = d3.select("#line_area")
-    .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-        .attr("transform", 
-              "translate(" + margin.left + "," + margin.top + ")");
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Recipe Popularity Prediction</div>
+          <a href="https://github.com/rajdeepbattula/recipe-popularity-ml">GitHub Repo</a>
+        </div>
+      </div>
 
-    // Scale the range of the data
-    x.domain(d3.extent(death_days, function(d) { return parseDate(d["date"]); }));
-    y.domain([0, d3.max(death_days, function(d) { return Number(d["deaths"]); })]);
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">House Price Prediction</div>
+          <a href="https://github.com/rajdeepbattula/house-price-prediction">GitHub Repo</a>
+        </div>
+      </div>
 
-    // Adding  the dots for creating scatterplot
-    svg.selectAll("dot")
-        .data(death_days)
-      .enter().append("circle")
-        .attr("r", 6)
-        .attr("cx", function(d) { return x(parseDate(d["date"])); })
-        .attr("cy", function(d) { return y(Number(d["deaths"])); });
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Hotel Booking Demand Prediction</div>
+          <a href="https://github.com/rajdeepbattula/Hotel-booking-demand-prediction">GitHub Repo</a>
+        </div>
+      </div>
 
-    // Add the X Axis
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Customer Segmentation</div>
+          <a href="https://github.com/rajdeepbattula/Customer-segmentation-data-exploration">GitHub Repo</a>
+        </div>
+      </div>
 
-    // Add the Y Axis
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Credit Card Default Analysis</div>
+          <a href="https://github.com/rajdeepbattula/Credit-card-default-analysis">GitHub Repo</a>
+        </div>
+      </div>
 
-    // Add the valueline path.
-    svg.append("path")
-        .attr("class", "line")
-        .attr("stroke-linejoin","round")
-      .attr("stroke-linecap","round")
-        .attr("d", valueline(death_days));
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Loan Eligibility Prediction</div>
+          <a href="https://github.com/rajdeepbattula/Loan-eligibility-data-exploration">GitHub Repo</a>
+        </div>
+      </div>
 
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Employee Attrition Analysis</div>
+          <a href="https://github.com/rajdeepbattula/Employee-attrition-analysis">GitHub Repo</a>
+        </div>
+      </div>
 
-    // create a tooltip
-    var tooltip = d3.select("#line_area")
-      .append("g")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "2px")
-      .style("border-radius", "5px")
-      .style("padding", "5px")
+    </div>
+  </div>
+</section>
+<section id="sql-projects" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">SQL & Analytics Projects</h2>
+    <div class="row">
 
-      var mouseover = function(d) {
-        console.log(d);
-        d3.selectAll('.' + 'dot' + d.date)
-			.style("fill", function(d) { return focus_col(ch_col(d));})
-			.attr('r', '9');
-        tooltip.style("opacity", 1);
-      }
-      var mousemove = function(d) {
-        console.log(d);
-        tooltip
-          .html(d)
-          .style("left", (d3.select(this).attr("cx")+"px"))
-          .style("top", (d3.select(this).attr("cx")+"px"))
-      }
-      var mouseleave = function(d) {
-        console.log(d);
-        d3.selectAll('.' + 'dot' + d.date)
-			.style("fill", function(d) { return old_col(og_col(d));})
-			.attr('r', '3');
-        tooltip
-          .style("opacity", 0);
-      }
-    
-    // Add the points
-    svg
-      .append("g")
-      .selectAll("dot")
-      .data(death_days)
-      .enter()
-      .append("circle")
-        .attr("class", "myCircle")
-        .attr("cx", function(d) { return x(parseDate(d.date)) } )
-        .attr("cy", function(d) { return y(Number(d.deaths)) } )
-        .attr("r", 8)
-        .attr("stroke", "#69b3a2")
-        .attr("stroke-width", 3)
-        .attr("fill", "white")
-        .on("mouseover", mouseover)
-        .on("mousemove", mousemove)
-        .on("mouseout", mouseleave)
+      <div class="col-md-3 mb-4">
+        <div class="project-card">
+          <div class="project-title">Sales Strategy SQL</div>
+          <a href="https://github.com/rajdeepbattula/sales-strategy-sql">GitHub Repo</a>
+        </div>
+      </div>
 
-        console.log(mouseover);
-       
-        });
-    });
-        
-           
-</script>
-<!--<script>
-    document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector('#contact').scrollIntoView({
-	behavior: 'smooth'
-      });
-    });
-</script>
-	<footer id="contact" class="bg-dark py-3 mt-5">
-	    <div class="contactdetails">
-	        <ul>
-	            <li>
-	                <a href="https://www.linkedin.com/in/balaakhilrajdeepbattula/" target="_blank">
-	                    <span class="fa-stack">
-	                        <i class="fa fa-circle fa-stack-2x" style="color:navy"></i>
-	                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-	                    </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="mailto:rajdeepbattula@gmail.com" target="_blank">
-	                    <span class="fa-stack">
-	                        <i class="fa fa-circle fa-stack-2x" style="color:olive"></i>
-	                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-	                    </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="https://github.com/rajdeepbattula" target="_blank">
-	                    <span class="fa-stack">
-	                        <i class="fa fa-circle fa-stack-2x" style="color:purple"></i>
-	                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-	                    </span>
-	                </a>
-	            </li>
-	        </ul>
-	    </div>
-	    <div class="container text-center">
-	        <p class="text-white">&copy; 2024 Bala Akhil Rajdeep Batttula</p>
-	    </div>
-	</footer>-->
+      <div class="col-md-3 mb-4">
+        <div class="project-card">
+          <div class="project-title">Hotel Operations SQL</div>
+          <a href="https://github.com/rajdeepbattula/hotel-operations-sql">GitHub Repo</a>
+        </div>
+      </div>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script src="quotes.js"></script>
-	<script src="script.js"></script>
+      <div class="col-md-3 mb-4">
+        <div class="project-card">
+          <div class="project-title">Grocery Store Sales SQL</div>
+          <a href="https://github.com/rajdeepbattula/grocery-store-sales-sql">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="project-card">
+          <div class="project-title">Loan Insights Data Engineering</div>
+          <a href="https://github.com/rajdeepbattula/loan-insights-data-engineering">GitHub Repo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="foundations" class="section">
+  <div class="container">
+    <h2 class="section-title">EDA, Visualization & Foundations</h2>
+    <div class="row">
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Supermarket Sales Analysis</div>
+          <a href="https://github.com/rajdeepbattula/Supermarket-sales-analysis">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Air Quality Analysis</div>
+          <a href="https://github.com/rajdeepbattula/Air-quality-analysis">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">EDA</div>
+          <a href="https://github.com/rajdeepbattula/EDA">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Tableau Dashboards</div>
+          <a href="https://github.com/rajdeepbattula/Tableau-dashboards">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Data Visualization</div>
+          <a href="https://github.com/rajdeepbattula/Data-visualization">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Database Design</div>
+          <a href="https://github.com/rajdeepbattula/Database-Design">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="project-card">
+          <div class="project-title">Cloud Computing</div>
+          <a href="https://github.com/rajdeepbattula/Cloud-computing">GitHub Repo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="certifications" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+
+    <div class="row">
+
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Core Data Certifications</div>
+          <ul class="project-desc">
+            <li>Data Scientist Professional</li>
+            <li>Data Engineer Professional</li>
+            <li>Data Analyst Professional</li>
+            <li>SQL Associate</li>
+            <li>AI Engineer for Data Scientists (Associate)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">AWS Academy</div>
+          <ul class="project-desc">
+            <li>AWS Cloud Foundations</li>
+            <li>AWS Cloud Architecting</li>
+            <li>AWS Machine Learning Foundations</li>
+            <li>AWS Data Analytics</li>
+            <li>AWS Cloud Developing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Cisco Networking Academy</div>
+          <ul class="project-desc">
+            <li>Introduction to Cybersecurity</li>
+            <li>Cybersecurity Essentials</li>
+            <li>Networking Basics</li>
+            <li>Python Essentials 1 & 2</li>
+            <li>Introduction to IoT</li>
+            <li>Introduction to Artificial Intelligence</li>
+            <li>NDG Linux Unhatched</li>
+            <li>NDG Linux Essentials</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">IBM SkillsBuild</div>
+          <ul class="project-desc">
+            <li>Data Science & AI Foundations</li>
+            <li>Data Analysis & Visualization</li>
+            <li>Cloud Computing & Cybersecurity</li>
+            <li>Software & Engineering Foundations</li>
+            <li>Business & Industry Domain Certifications</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Microsoft & LinkedIn Learning</div>
+          <ul class="project-desc">
+            <li>Career Essentials in Generative AI</li>
+            <li>Career Essentials in Data Analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="project-card">
+          <div class="project-title">Agile & Project Management</div>
+          <ul class="project-desc">
+            <li>Agile Project Management with Jira (Advanced Topics)</li>
+            <li>Agile Project Management: Projects, Boards & Issues</li>
+            <li>Mistakes to Avoid in Agile Project Management</li>
+            <li>Career Essentials in Project Management</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+
+    <ul class="list-unstyled">
+      <li><strong>GitHub:</strong> <a href="https://github.com/rajdeepbattula">github.com/rajdeepbattula</a></li>
+      <li><strong>Portfolio:</strong> <a href="https://rajdeepbattula.github.io/">rajdeepbattula.github.io</a></li>
+      <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/balaakhilrajdeepbattula">linkedin.com/in/balaakhilrajdeepbattula</a></li>
+      <li><strong>Email:</strong> balaakhilrajdeep.b@gmail.com</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Bala Akhil Rajdeep Battula</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
