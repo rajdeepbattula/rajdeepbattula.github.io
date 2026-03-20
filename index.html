@@ -17,6 +17,21 @@
   --teal-dark: #00695c;
   --bg-light: #f7f9fb;
 }
+.fixed-top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3000;
+  background: #ffffff;
+  border-bottom: 2px solid var(--teal);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Push the rest of the page down so content doesn't hide behind the fixed header */
+body {
+  padding-top: 360px; /* adjust if needed */
+}
 
 /* Profile image */
 .profile-img {
@@ -164,33 +179,33 @@ footer {
 </head>
 <body>
  <!-- Profile Image + Name + Title -->
-<div class="text-center mt-4">
-  <img src="https://rajdeepbattula.github.io/bbattula_picture.jpg" class="profile-img" alt="Profile Photo">
-  <div class="profile-name">Bala Akhil Rajdeep Battula</div>
-  <div class="profile-title">Technology & Data Professional | Transitioning into Automotive & Technical Trades</div>
+<div class="fixed-top-header">
+  <div class="text-center pt-3 pb-2 bg-white">
+    <img src="https://rajdeepbattula.github.io/bbattula_picture.jpg" class="profile-img" alt="Profile Photo">
+    <div class="profile-name">Bala Akhil Rajdeep Battula</div>
+    <div class="profile-title">Technology & Data Professional | Transitioning into Automotive & Technical Trades</div>
+  </div>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <div class="container">
+      <a class="navbar-brand" href="#top"><strong>Bala Akhil Rajdeep Battula</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ml-projects">ML Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sql-projects">SQL</a></li>
+          <li class="nav-item"><a class="nav-link" href="#foundations">Foundations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
 
-
-<nav class="navbar navbar-expand-md navbar-light bg-white">
-  <div class="container">
-    <a class="navbar-brand" href="#top"><strong>Bala Akhil Rajdeep Rajdeep Battula</strong></a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
-        <li class="nav-item"><a class="nav-link" href="#ml-projects">ML Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="#sql-projects">SQL</a></li>
-        <li class="nav-item"><a class="nav-link" href="#foundations">Foundations</a></li>
-        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 <header id="top" class="hero">
   <div class="container">
     <h1 class="hero-title">Bala Akhil Rajdeep Battula</h1>
