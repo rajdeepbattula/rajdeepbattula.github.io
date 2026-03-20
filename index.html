@@ -13,98 +13,154 @@
 
   <style>
     :root {
-      --teal: #00897b;
-      --teal-dark: #00695c;
-      --bg-light: #f7f9fb;
-    }
-    .profile-img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--teal);
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
-    }
+  --teal: #00897b;
+  --teal-dark: #00695c;
+  --bg-light: #f7f9fb;
+}
 
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #ffffff;
-      color: #222;
-    }
+/* Profile image */
+.profile-img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--teal);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
-    .navbar {
-      border-bottom: 2px solid var(--teal);
-    }
+/* Name + title under image */
+.profile-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
 
-    .nav-link:hover {
-      color: var(--teal) !important;
-    }
+.profile-title {
+  font-size: 1rem;
+  color: var(--teal-dark);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
 
-    .hero {
-      padding: 4rem 0 3rem 0;
-      background: linear-gradient(
-        135deg,
-        rgba(0, 137, 123, 0.08),
-        rgba(0, 105, 92, 0.12)
-      );
-    }
+/* Body */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #222;
+}
 
-    .hero-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-    }
+/* Navbar */
+.navbar {
+  border-bottom: 2px solid var(--teal);
+}
 
-    .hero-subtitle {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--teal-dark);
-    }
+.nav-link:hover {
+  color: var(--teal) !important;
+}
 
-    .section {
-      padding: 3rem 0;
-    }
+/* Hero section */
+.hero {
+  padding: 4rem 0 3rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 137, 123, 0.08),
+    rgba(0, 105, 92, 0.12)
+  );
+}
 
-    .section-light {
-      background-color: var(--bg-light);
-    }
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
 
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid var(--teal);
-      padding-left: 0.75rem;
-    }
+.hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--teal-dark);
+}
 
-    .project-card {
-      border: 1px solid #e3e6ea;
-      border-radius: 0.5rem;
-      padding: 1.25rem;
-      background-color: #ffffff;
-      transition: 0.15s ease;
-    }
+/* Section spacing */
+.section {
+  padding: 3.5rem 0;
+}
 
-    .project-card:hover {
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      transform: translateY(-2px);
-    }
+.section-light {
+  background-color: var(--bg-light);
+}
 
-    .project-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--teal);
+  padding-left: 0.75rem;
+}
 
-    .project-desc {
-      font-size: 0.9rem;
-    }
+/* Project cards */
+.project-card {
+  border: 1px solid #e3e6ea;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  background-color: #ffffff;
+  transition: 0.2s ease;
+  height: 100%;
+}
 
-    footer {
-      border-top: 1px solid #e3e6ea;
-      padding: 1.5rem 0;
-      background-color: #fafbfc;
-    }
-  </style>
+.project-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+}
+
+.project-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+}
+
+/* Certification links */
+.project-desc a {
+  color: var(--teal-dark);
+  font-weight: 500;
+}
+
+.project-desc a:hover {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+/* Experience section */
+.experience-item {
+  margin-bottom: 2rem;
+}
+
+.experience-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.experience-date {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.experience-item ul li {
+  margin-bottom: 0.4rem;
+}
+
+/* Footer */
+footer {
+  padding: 1.5rem 0;
+  background-color: #fafbfc;
+  text-align: center;
+  font-size: 0.9rem;
+}
+</style>
 </head>
 <body>
   <!-- Profile Image at the Top -->
