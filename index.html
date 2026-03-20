@@ -13,194 +13,217 @@
 
   <style>
     :root {
-  --teal: #00897b;
-  --teal-dark: #00695c;
-  --bg-light: #f7f9fb;
-}
-.fixed-top-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 3000;
-  background: #ffffff;
-  border-bottom: 2px solid var(--teal);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
+      --teal: #00897b;
+      --teal-dark: #00695c;
+      --bg-light: #f7f9fb;
+    }
 
-/* Push the rest of the page down so content doesn't hide behind the fixed header */
-body {
-  padding-top: 360px; /* adjust if needed */
-}
-html {
-  scroll-padding-top: 360px; /* match your fixed header height */
-}
-/* Profile image */
-.profile-img {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--teal);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #ffffff;
+      color: #222;
+      padding-top: 260px;
+    }
 
-/* Name + title under image */
-.profile-name {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-top: 0.5rem;
-}
+    html {
+      scroll-padding-top: 260px;
+    }
 
-.profile-title {
-  font-size: 1rem;
-  color: var(--teal-dark);
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-}
+    @media (min-width: 768px) {
+      body {
+        padding-top: 340px;
+      }
+      html {
+        scroll-padding-top: 340px;
+      }
+    }
 
-/* Body */
-body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background-color: #ffffff;
-  color: #222;
-}
+    /* Fixed Header */
+    .fixed-top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3000;
+      background: #ffffff;
+      border-bottom: 2px solid var(--teal);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding-bottom: 0.5rem;
+    }
 
-/* Navbar */
-.navbar {
-  border-bottom: 2px solid var(--teal);
-}
+    /* Profile Image */
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--teal);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
 
-.nav-link:hover {
-  color: var(--teal) !important;
-}
+    @media (max-width: 576px) {
+      .profile-img {
+        width: 110px;
+        height: 110px;
+      }
+    }
 
-/* Hero section */
-.hero {
-  padding: 4rem 0 3rem 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 137, 123, 0.08),
-    rgba(0, 105, 92, 0.12)
-  );
-}
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
 
-.hero-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-}
+    .profile-title {
+      font-size: 0.95rem;
+      color: var(--teal-dark);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
 
-.hero-subtitle {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--teal-dark);
-}
+    @media (max-width: 576px) {
+      .profile-name {
+        font-size: 1.25rem;
+      }
+      .profile-title {
+        font-size: 0.8rem;
+      }
+    }
 
-/* Section spacing */
-.section {
-  padding: 3.5rem 0;
-}
+    /* Navbar */
+    .navbar {
+      border-top: 1px solid #eaeaea;
+    }
 
-.section-light {
-  background-color: var(--bg-light);
-}
+    .nav-link:hover {
+      color: var(--teal) !important;
+    }
 
-.section-title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border-left: 4px solid var(--teal);
-  padding-left: 0.75rem;
-}
+    /* Hero */
+    .hero {
+      padding: 3rem 0 2rem 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 137, 123, 0.08),
+        rgba(0, 105, 92, 0.12)
+      );
+    }
 
-/* Project cards */
-.project-card {
-  border: 1px solid #e3e6ea;
-  border-radius: 0.5rem;
-  padding: 1.25rem;
-  background-color: #ffffff;
-  transition: 0.2s ease;
-  height: 100%;
-}
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 700;
+    }
 
-.project-card:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transform: translateY(-3px);
-}
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--teal-dark);
+    }
 
-.project-title {
-  font-size: 1.05rem;
-  font-weight: 600;
-}
+    /* Sections */
+    .section {
+      padding: 3rem 0;
+    }
 
-.project-desc {
-  font-size: 0.9rem;
-}
+    .section-light {
+      background-color: var(--bg-light);
+    }
 
-/* Certification links */
-.project-desc a {
-  color: var(--teal-dark);
-  font-weight: 500;
-}
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--teal);
+      padding-left: 0.75rem;
+    }
 
-.project-desc a:hover {
-  color: var(--teal);
-  text-decoration: underline;
-}
+    /* Project Cards */
+    .project-card {
+      border: 1px solid #e3e6ea;
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+      background-color: #ffffff;
+      transition: 0.2s ease;
+      height: 100%;
+    }
 
-/* Experience section */
-.experience-item {
-  margin-bottom: 2rem;
-}
+    .project-card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
 
-.experience-item h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
 
-.experience-date {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-}
+    .project-desc {
+      font-size: 0.9rem;
+    }
 
-.experience-item ul li {
-  margin-bottom: 0.4rem;
-}
+    .project-desc a {
+      color: var(--teal-dark);
+      font-weight: 500;
+    }
 
-/* Footer */
-footer {
-  padding: 1.5rem 0;
-  background-color: #fafbfc;
-  text-align: center;
-  font-size: 0.9rem;
-}
-</style>
+    .project-desc a:hover {
+      color: var(--teal);
+      text-decoration: underline;
+    }
+
+    /* Experience */
+    .experience-item {
+      margin-bottom: 2rem;
+    }
+
+    .experience-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .experience-date {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.5rem 0;
+      background-color: #fafbfc;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
+
 <body>
- <!-- Profile Image + Name + Title -->
-<div class="fixed-top-header">
-  <div class="text-center pt-3 pb-2 bg-white">
-    <img src="https://rajdeepbattula.github.io/bbattula_picture.jpg" class="profile-img" alt="Profile Photo">
-    <div class="profile-name">Bala Akhil Rajdeep Battula</div>
-    <div class="profile-title">Technology & Data Professional | Transitioning into Automotive & Technical Trades</div>
-  </div>
+
+<!-- Fixed Header -->
+<div class="fixed-top-header text-center">
+  <img src="https://rajdeepbattula.github.io/bbattula_picture.jpg" class="profile-img" alt="Profile Photo">
+  <div class="profile-name">Bala Akhil Rajdeep Battula</div>
+  <div class="profile-title">Technology & Data Professional | Transitioning into Automotive & Technical Trades</div>
 
   <nav class="navbar navbar-expand-md navbar-light bg-white">
     <div class="container">
-      <a class="navbar-brand" href="#top"><strong>Bala Akhil Rajdeep Battula</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
-          <li class="nav-item"><a class="nav-link" href="#ml-projects">ML Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ml-projects">ML</a></li>
           <li class="nav-item"><a class="nav-link" href="#sql-projects">SQL</a></li>
           <li class="nav-item"><a class="nav-link" href="#foundations">Foundations</a></li>
           <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -208,6 +231,7 @@ footer {
   </nav>
 </div>
 
+<!-- Hero -->
 <header id="top" class="hero">
   <div class="container">
     <h1 class="hero-title">Bala Akhil Rajdeep Battula</h1>
@@ -220,29 +244,20 @@ footer {
     </p>
   </div>
 </header>
+<!-- Featured Projects -->
 <section id="featured" class="section section-light">
   <div class="container">
     <h2 class="section-title">Featured Projects</h2>
     <div class="row">
 
-      <!-- Cholera -->
-     <!-- <div class="col-md-6 mb-4">
-        <div class="project-card">
-          <div class="project-title">Cholera Epidemic Visualization (D3.js)</div>
-          <p class="project-desc">Interactive recreation of Dr. John Snow’s 1854 cholera map.</p>
-          <a href="https://github.com/rajdeepbattula/cholera-epidemic-visualization">GitHub Repo</a>
-        </div>
-      </div>-->
-
-      <div class="col-md-3 mb-4">
+      <div class="col-md-4 mb-4">
         <div class="project-card">
           <div class="project-title">Loan Insights Data Engineering</div>
           <a href="https://github.com/rajdeepbattula/loan-insights-data-engineering">GitHub Repo</a>
         </div>
       </div>
 
-      <!-- Spectrum Shades -->
-      <div class="col-md-6 mb-4">
+      <div class="col-md-4 mb-4">
         <div class="project-card">
           <div class="project-title">Spectrum Shades Quality Analysis</div>
           <p class="project-desc">Root-cause analysis for pigment quality issues.</p>
@@ -250,8 +265,7 @@ footer {
         </div>
       </div>
 
-      <!-- Supplement Experiments -->
-      <div class="col-md-6 mb-4">
+      <div class="col-md-4 mb-4">
         <div class="project-card">
           <div class="project-title">Supplement Experiments Data Engineering</div>
           <p class="project-desc">Unified dataset for wearable & supplement experiments.</p>
@@ -262,83 +276,52 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ML Projects -->
 <section id="ml-projects" class="section">
   <div class="container">
     <h2 class="section-title">Machine Learning Projects</h2>
     <div class="row">
 
-      <div class="col-md-4 mb-4">
+      <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">Recipe Popularity Prediction</div>
           <a href="https://github.com/rajdeepbattula/recipe-popularity-ml">GitHub Repo</a>
         </div>
       </div>
 
-      <div class="col-md-4 mb-4">
+      <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">House Price Prediction</div>
           <a href="https://github.com/rajdeepbattula/house-price-prediction">GitHub Repo</a>
         </div>
       </div>
 
-    <!--  <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Hotel Booking Demand Prediction</div>
-          <a href="https://github.com/rajdeepbattula/Hotel-booking-demand-prediction">GitHub Repo</a>
-        </div>
-      </div> 
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Customer Segmentation</div>
-          <a href="https://github.com/rajdeepbattula/Customer-segmentation-data-exploration">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Credit Card Default Analysis</div>
-          <a href="https://github.com/rajdeepbattula/Credit-card-default-analysis">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Loan Eligibility Prediction</div>
-          <a href="https://github.com/rajdeepbattula/Loan-eligibility-data-exploration">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Employee Attrition Analysis</div>
-          <a href="https://github.com/rajdeepbattula/Employee-attrition-analysis">GitHub Repo</a>
-        </div>
-      </div>-->
-
     </div>
   </div>
 </section>
+
+<!-- SQL Projects -->
 <section id="sql-projects" class="section section-light">
   <div class="container">
     <h2 class="section-title">SQL & Analytics Projects</h2>
     <div class="row">
 
-      <div class="col-md-3 mb-4">
+      <div class="col-md-4 mb-4">
         <div class="project-card">
           <div class="project-title">Sales Strategy SQL</div>
           <a href="https://github.com/rajdeepbattula/sales-strategy-sql">GitHub Repo</a>
         </div>
       </div>
 
-      <div class="col-md-3 mb-4">
+      <div class="col-md-4 mb-4">
         <div class="project-card">
           <div class="project-title">Hotel Operations SQL</div>
           <a href="https://github.com/rajdeepbattula/hotel-operations-sql">GitHub Repo</a>
         </div>
       </div>
 
-      <div class="col-md-3 mb-4">
+      <div class="col-md-4 mb-4">
         <div class="project-card">
           <div class="project-title">Grocery Store Sales SQL</div>
           <a href="https://github.com/rajdeepbattula/grocery-store-sales-sql">GitHub Repo</a>
@@ -348,47 +331,13 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- Foundations -->
 <section id="foundations" class="section">
   <div class="container">
     <h2 class="section-title">EDA, Visualization & Foundations</h2>
     <div class="row">
 
-     <!-- <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Supermarket Sales Analysis</div>
-          <a href="https://github.com/rajdeepbattula/Supermarket-sales-analysis">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Air Quality Analysis</div>
-          <a href="https://github.com/rajdeepbattula/Air-quality-analysis">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">EDA</div>
-          <a href="https://github.com/rajdeepbattula/EDA">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Tableau Dashboards</div>
-          <a href="https://github.com/rajdeepbattula/Tableau-dashboards">GitHub Repo</a>
-        </div>
-      </div>
-
-      <div class="col-md-4 mb-4">
-        <div class="project-card">
-          <div class="project-title">Data Visualization</div>
-          <a href="https://github.com/rajdeepbattula/Data-visualization">GitHub Repo</a>
-        </div>
-      </div>-->
-
-      <!-- Hotel Booking Viz -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">Hotel Booking Demand Visualization</div>
@@ -422,13 +371,13 @@ footer {
     </div>
   </div>
 </section>
+<!-- Certifications -->
 <section id="certifications" class="section section-light">
   <div class="container">
     <h2 class="section-title">Certifications</h2>
 
     <div class="row">
 
-      <!-- Core Data Certifications -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">Core Data Certifications</div>
@@ -444,7 +393,6 @@ footer {
         </div>
       </div>
 
-      <!-- AI & Generative AI -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">AI & Generative AI</div>
@@ -456,25 +404,23 @@ footer {
         </div>
       </div>
 
-      <!-- Project & Agile -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">Project & Agile</div>
           <ul class="project-desc">
             <li><a href="https://www.linkedin.com/learning/certificates/658a911c6331235e177fe75601adf6fb64cc3c866dd385476f0ee72024e263e7" target="_blank">Career Essentials in Project Management</a></li>
-            <li><a href="https://www.linkedin.com/learning/certificates/577063c826e8a6fd9a1275f3ac94dffd88a0ce313b5c6f365ab764569b2f561f" target="_blank">Agile Project Management with Jira (Advanced Topics)</a></li>
+            <li><a href="https://www.linkedin.com/learning/certificates/577063c826e8a6fd9a1275f3ac94dffd88a0ce313b5c6f365ab764569b2f561f" target="_blank">Agile Project Management with Jira</a></li>
             <li><a href="https://www.linkedin.com/learning/certificates/bb32a336a5c23df0a907e36cb88c7cba500b777f278887f97d8f4a337daa55f8" target="_blank">Agile Foundations (IIBA)</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- DevOps & Cloud -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">DevOps & Cloud</div>
           <ul class="project-desc">
-            <li><a href="https://www.linkedin.com/learning/certificates/1c90147f9f05b0cd786dc1f426c7c20886494305b5afeaf46b374dd0bd52356c" target="_blank">DevOps Professional Certificate (PagerDuty)</a></li>
-            <li><a href="https://www.linkedin.com/learning/certificates/cad8ce11421ef7291cfba80e262fb62d35b03814b5453f413c2788d7e1a9fdca" target="_blank">Docker Foundations Professional Certificate</a></li>
+            <li><a href="https://www.linkedin.com/learning/certificates/1c90147f9f05b0cd786dc1f426c7c20886494305b5afeaf46b374dd0bd52356c" target="_blank">DevOps Professional Certificate</a></li>
+            <li><a href="https://www.linkedin.com/learning/certificates/cad8ce11421ef7291cfba80e262fb62d35b03814b5453f413c2788d7e1a9fdca" target="_blank">Docker Foundations</a></li>
           </ul>
         </div>
       </div>
@@ -482,7 +428,9 @@ footer {
     </div>
   </div>
 </section>
-<section id="experience" class="section section-dark">
+
+<!-- Experience -->
+<section id="experience" class="section">
   <div class="container">
     <h2 class="section-title">Experience</h2>
 
@@ -497,11 +445,11 @@ footer {
     </div>
 
     <div class="experience-item">
-      <h3> The Polis Center at IUPUI - Data Engineer  / Indiana University – Data Science Specialist</h3>
+      <h3>The Polis Center at IUPUI – Data Engineer / Indiana University – Data Science Specialist</h3>
       <p class="experience-date">Aug 2021 – Dec 2022</p>
       <ul>
-        <li>Built reusable Python and SQL pipelines to standardize multi‑source clinical and operational data for analytics and model monitoring.</li>
-        <li>Refactored legacy monitoring jobs into a single scheduled workflow with clear ownership and automated failure alerts.</li>
+        <li>Built reusable Python and SQL pipelines to standardize multi‑source clinical and operational data.</li>
+        <li>Refactored legacy monitoring jobs into a single scheduled workflow with automated failure alerts.</li>
         <li>Created Tableau dashboards to visualize model performance, drift trends, and data quality indicators.</li>
       </ul>
     </div>
@@ -510,9 +458,9 @@ footer {
       <h3>L&T Financial Services / Infosys – Senior Systems Engineer</h3>
       <p class="experience-date">Jul 2018 – Jul 2021</p>
       <ul>
-        <li>Aligned ETL pipelines and model monitoring processes with governance and regulatory expectations for credit risk models.</li>
-        <li>Centralized monitoring scripts into a shared Python framework with standardized runbooks and audit‑ready documentation.</li>
-        <li>Prepared evidence packs for regulatory reviews, detailing thresholds, drift analysis, and remediation timelines.</li>
+        <li>Aligned ETL pipelines and model monitoring processes with governance and regulatory expectations.</li>
+        <li>Centralized monitoring scripts into a shared Python framework with standardized runbooks.</li>
+        <li>Prepared audit‑ready documentation for regulatory reviews.</li>
       </ul>
     </div>
 
@@ -520,36 +468,38 @@ footer {
       <h3>Girls Inc. – Instructor (STEM Workshop)</h3>
       <p class="experience-date">May 2025</p>
       <ul>
-        <li>Led a hands‑on workshop introducing middle‑school students to 3D printing, programming logic, and problem‑solving skills.</li>
+        <li>Led a hands‑on workshop introducing middle‑school students to 3D printing and programming logic.</li>
       </ul>
     </div>
 
   </div>
 </section>
+
+<!-- Contact -->
 <section id="contact" class="section section-light">
   <div class="container">
     <h2 class="section-title">Contact</h2>
 
     <ul class="list-unstyled contact-list">
-      <li><strong>GitHub:</strong> 
+      <li><strong>GitHub:</strong>
         <a href="https://github.com/rajdeepbattula" target="_blank">
           github.com/rajdeepbattula
         </a>
       </li>
 
-      <li><strong>Portfolio:</strong> 
+      <li><strong>Portfolio:</strong>
         <a href="https://rajdeepbattula.github.io/" target="_blank">
           rajdeepbattula.github.io
         </a>
       </li>
 
-      <li><strong>LinkedIn:</strong> 
+      <li><strong>LinkedIn:</strong>
         <a href="https://www.linkedin.com/in/balaakhilrajdeepbattula" target="_blank">
           linkedin.com/in/balaakhilrajdeepbattula
         </a>
       </li>
 
-      <li><strong>Email:</strong> 
+      <li><strong>Email:</strong>
         <a href="mailto:balaakhilrajdeep.b@gmail.com">
           balaakhilrajdeep.b@gmail.com
         </a>
@@ -558,12 +508,14 @@ footer {
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
   <div class="container">
     <p>&copy; 2026 Bala Akhil Rajdeep Battula</p>
   </div>
 </footer>
 
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
