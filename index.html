@@ -10,6 +10,7 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -37,6 +38,40 @@
         scroll-padding-top: 340px;
       }
     }
+    /* Accordion Styles */
+.accordion-section {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.accordion-arrow {
+  transition: transform 0.3s ease;
+  font-size: 1.2rem;
+  color: var(--teal-dark);
+}
+
+.accordion-arrow.rotate {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  padding-top: 1rem;
+  display: block; /* all visible at first */
+}
+
+.accordion-content.hidden {
+  display: none;
+}
 
     /* Fixed Header */
     .fixed-top-header {
@@ -245,6 +280,12 @@
   </div>
 </header>
 <!-- Featured Projects -->
+<div class="accordion-section">
+  <div class="accordion-title">Featured</div>
+  <div class="accordion-arrow rotate">▶</div>
+</div>
+
+<div class="accordion-content">
 <section id="featured" class="section section-light">
   <div class="container">
     <h2 class="section-title">Featured Projects</h2>
@@ -276,8 +317,15 @@
     </div>
   </div>
 </section>
-
+</div>
+  
 <!-- ML Projects -->
+<div class="accordion-section">
+  <div class="accordion-title">Machine Learning</div>
+  <div class="accordion-arrow rotate">▶</div>
+</div>
+
+<div class="accordion-content">
 <section id="ml-projects" class="section">
   <div class="container">
     <h2 class="section-title">Machine Learning Projects</h2>
@@ -300,8 +348,15 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- SQL Projects -->
+<div class="accordion-section">
+  <div class="accordion-title">SQL</div>
+  <div class="accordion-arrow rotate">▶</div>
+</div>
+
+<div class="accordion-content">
 <section id="sql-projects" class="section section-light">
   <div class="container">
     <h2 class="section-title">SQL & Analytics Projects</h2>
@@ -331,8 +386,15 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- Foundations -->
+<div class="accordion-section">
+  <div class="accordion-title">Foundations</div>
+  <div class="accordion-arrow rotate">▶</div>
+</div>
+
+<div class="accordion-content">
 <section id="foundations" class="section">
   <div class="container">
     <h2 class="section-title">EDA, Visualization & Foundations</h2>
@@ -371,13 +433,21 @@
     </div>
   </div>
 </section>
+</div>
 <!-- Certifications -->
+<div class="accordion-section">
+  <div class="accordion-title">Certifications</div>
+  <div class="accordion-arrow rotate">▶</div>
+</div>
+
+<div class="accordion-content">
 <section id="certifications" class="section section-light">
   <div class="container">
     <h2 class="section-title">Certifications</h2>
 
     <div class="row">
 
+      <!-- Core Data Certifications -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">Core Data Certifications</div>
@@ -393,6 +463,7 @@
         </div>
       </div>
 
+      <!-- AI & Generative AI -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">AI & Generative AI</div>
@@ -404,6 +475,7 @@
         </div>
       </div>
 
+      <!-- Project & Agile -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">Project & Agile</div>
@@ -415,6 +487,7 @@
         </div>
       </div>
 
+      <!-- DevOps & Cloud -->
       <div class="col-md-6 mb-4">
         <div class="project-card">
           <div class="project-title">DevOps & Cloud</div>
@@ -428,8 +501,15 @@
     </div>
   </div>
 </section>
-
+</div>
+  
 <!-- Experience -->
+<div class="accordion-section">
+  <div class="accordion-title">Experience</div>
+  <div class="accordion-arrow rotate">▶</div>
+</div>
+
+<div class="accordion-content">
 <section id="experience" class="section">
   <div class="container">
     <h2 class="section-title">Experience</h2>
@@ -474,36 +554,46 @@
 
   </div>
 </section>
+</div>
 
-<!-- Contact -->
 <section id="contact" class="section section-light">
   <div class="container">
     <h2 class="section-title">Contact</h2>
 
     <ul class="list-unstyled contact-list">
-      <li><strong>GitHub:</strong>
+
+      <li>
+        <i class="fab fa-github fa-lg" style="color:#333; margin-right:8px;"></i>
+        <strong>GitHub:</strong>
         <a href="https://github.com/rajdeepbattula" target="_blank">
           github.com/rajdeepbattula
         </a>
       </li>
 
-      <li><strong>Portfolio:</strong>
+      <li>
+        <i class="fas fa-globe fa-lg" style="color:#00897b; margin-right:8px;"></i>
+        <strong>Portfolio:</strong>
         <a href="https://rajdeepbattula.github.io/" target="_blank">
           rajdeepbattula.github.io
         </a>
       </li>
 
-      <li><strong>LinkedIn:</strong>
+      <li>
+        <i class="fab fa-linkedin fa-lg" style="color:#0A66C2; margin-right:8px;"></i>
+        <strong>LinkedIn:</strong>
         <a href="https://www.linkedin.com/in/balaakhilrajdeepbattula" target="_blank">
           linkedin.com/in/balaakhilrajdeepbattula
         </a>
       </li>
 
-      <li><strong>Email:</strong>
+      <li>
+        <i class="fas fa-envelope fa-lg" style="color:#D44638; margin-right:8px;"></i>
+        <strong>Email:</strong>
         <a href="mailto:balaakhilrajdeep.b@gmail.com">
           balaakhilrajdeep.b@gmail.com
         </a>
       </li>
+
     </ul>
   </div>
 </section>
@@ -518,6 +608,31 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll(".accordion-section");
 
+  sections.forEach((section) => {
+    section.addEventListener("click", () => {
+      const content = section.nextElementSibling;
+      const arrow = section.querySelector(".accordion-arrow");
+
+      // Collapse all other sections
+      document.querySelectorAll(".accordion-content").forEach((c) => {
+        if (c !== content) c.classList.add("hidden");
+      });
+
+      document.querySelectorAll(".accordion-arrow").forEach((a) => {
+        if (a !== arrow) a.classList.remove("rotate");
+      });
+
+      // Toggle current section
+      content.classList.toggle("hidden");
+      arrow.classList.toggle("rotate");
+    });
+  });
+});
+</script>
 </body>
 </html>
